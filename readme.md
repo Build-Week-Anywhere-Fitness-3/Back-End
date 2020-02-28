@@ -1,4 +1,4 @@
-# send all data in lowercase
+# Send all data in lowercase
 
 # Adding New User
 
@@ -16,14 +16,14 @@ the role has to be either "instructor" or "client"
 
 # How to Login
 
-Admin for Instructor:
+#### Admin for Instructor:
 
-username: admin
+username: admin <br>
 password: admin
 
-Client for Client:
+#### Client for Client:
 
-username: client
+username: client <br>
 password: client
 
 Authorization POST: https://anywhere-fitness-lambda.herokuapp.com/api/auth/login
@@ -35,7 +35,7 @@ send username and password in json format such as following
 "password":"admin"
 }
 
-# Class End Points
+# Classes End Points
 
 This end point will return list of all classes. user has to be authenticated
 
@@ -49,7 +49,56 @@ seach for classes
 
 Authorization POST: https://anywhere-fitness-lambda.herokuapp.com/api/classes/search
 
-pass class name in json format
+pass class name in json format <br> passing "yoga" will return all classes that has yoga in its name
+
 {
-"name":"i"
+"name":"yoga"
 }
+
+# Instructor End Points
+
+## Add Class
+
+Authorization POST: https://anywhere-fitness-lambda.herokuapp.com/api/ins/create-class
+
+The group passed in has to be an existing group:
+
+{
+"name": "yoga 501",
+"group": "yoga",
+"class_date": "2020-12-25",
+"start_time": "12:30pm",
+"duration": 60,
+"intensity_level": 7,
+"location": "Austin",
+"current_size": 2,
+"max_size": 15
+}
+
+### update class
+
+Authorization PUT: https://anywhere-fitness-lambda.herokuapp.com/api/ins/classes/:id
+
+### remove class
+
+Authorization DELETE: https://anywhere-fitness-lambda.herokuapp.com/api/ins/classes/:id
+
+### retrieve list of all groups
+
+Authorization GET: https://anywhere-fitness-lambda.herokuapp.com/api/ins/groups
+
+### retrieve single group
+
+Authorization GET: https://anywhere-fitness-lambda.herokuapp.com/api/ins/groups/:id
+
+### create group
+
+Authorization POST: https://anywhere-fitness-lambda.herokuapp.com/api/ins/create-group
+
+### update group
+
+Authorization PUT: https://anywhere-fitness-lambda.herokuapp.com/api/ins/groups/:id
+
+### delete group
+
+Authorization DELETE: https://anywhere-fitness-lambda.herokuapp.com/api/ins/groups/:id

@@ -22,7 +22,6 @@ router.get("/:id", (req, res) => {
 
 router.post("/search", (req, res) => {
   const { name } = req.body;
-  console.log("name: ", req.body);
   Classes.searchByName(name)
     .then(searchResults => {
       res.json(searchResults);
