@@ -54,6 +54,7 @@ function findReservationById(userId, reservationId) {
     .join("groups as g", "g.id", "c.group_id")
     .select(
       "cu.id as reservation_id",
+      "c.id as class_id",
       "c.name",
       "g.name as group",
       "c.class_date",
@@ -70,8 +71,19 @@ function findReservationById(userId, reservationId) {
     .first();
 }
 
-function removeReservation(userId, reservationId) {
-  console.log("hit");
+async function removeReservation(userId, reservationId, classId) {
+  const { current_size } = await db("classes")
+    .select("current_size")
+    .where("id", classId)
+    .first();
+
+  const newSize = current_size + 1;
+  await db("classes")
+    .where("id", classId)
+    .update({
+      current_size: newSize
+    });
+
   return db("class_users")
     .where("user_id", userId)
     .andWhere("id", reservationId)

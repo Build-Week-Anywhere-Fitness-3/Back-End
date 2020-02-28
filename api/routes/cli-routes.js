@@ -43,8 +43,9 @@ router.get("/reservations/:id", (req, res) => {
 router.delete("/reservations/:id", (req, res) => {
   const { userid } = req.decodedJWT;
   const id = req.reservation.reservation_id;
+  const classId = req.reservation.class_id;
 
-  Reserve.removeReservation(userid, id)
+  Reserve.removeReservation(userid, id, classId)
     .then(deletedReservation => {
       res.json(`you have removed ${deletedReservation} reservation`);
     })
