@@ -95,6 +95,11 @@ Authorization GET: https://anywhere-fitness-lambda.herokuapp.com/api/ins/groups/
 
 Authorization POST: https://anywhere-fitness-lambda.herokuapp.com/api/ins/create-group
 
+pass data in json name only: <br>
+{
+"name": "my new group"
+}
+
 ### update group
 
 Authorization PUT: https://anywhere-fitness-lambda.herokuapp.com/api/ins/groups/:id
@@ -102,3 +107,26 @@ Authorization PUT: https://anywhere-fitness-lambda.herokuapp.com/api/ins/groups/
 ### delete group
 
 Authorization DELETE: https://anywhere-fitness-lambda.herokuapp.com/api/ins/groups/:id
+
+# Client End Points
+
+### Reserver a class
+
+Authorization POST: https://anywhere-fitness-lambda.herokuapp.com/api/cli/add-reservation
+
+pass the class id in json format: <br>
+{
+"id": "1"
+}
+
+### get all reservations
+
+Authorization GET: https://anywhere-fitness-lambda.herokuapp.com/api/cli/reservations
+
+### get single reservation
+
+Authorization GET: https://anywhere-fitness-lambda.herokuapp.com/api/cli/reservations/:id
+
+### remove reservation
+
+Authorization DELETE: https://anywhere-fitness-lambda.herokuapp.com/api/cli/reservations/:id

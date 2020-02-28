@@ -26,4 +26,15 @@ router.use(
 );
 //================instructor router============
 
+//================instructor router===================
+const cliRouter = require("../api/routes/cli-routes.js");
+
+router.use(
+  "/cli",
+  restrictedMiddleware,
+  checkRoleMiddleware("client"),
+  cliRouter
+);
+//================instructor router============
+
 module.exports = router;
