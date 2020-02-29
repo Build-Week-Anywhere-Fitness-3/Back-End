@@ -78,7 +78,7 @@ async function removeReservation(userId, reservationId, classId) {
     .first();
 
   const newSize = current_size - 1;
-  
+
   await db("classes")
     .where("id", classId)
     .update({
