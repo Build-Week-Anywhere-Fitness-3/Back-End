@@ -9,7 +9,7 @@ router.post("/add-reservation", (req, res) => {
 
   Reserve.addReservation(userid, req.body.id)
     .then(myResev => {
-      res.json(myResev);
+      res.json(`you have reserved ${myResev} class`);
     })
     .catch(err =>
       res.status(500).json({ message: "error reserving the class" })

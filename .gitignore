@@ -4,5 +4,9 @@
 #node_modules
 .DS_Store
 node_modules/
+
 #environment variables
 .env
+
+#database
+*.db3

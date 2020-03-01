@@ -20,10 +20,12 @@ async function addReservation(userId, classId) {
       current_size: newSize
     });
 
-  return db("class_users").insert({
+  const { rowCount } = await db("class_users").insert({
     user_id: userId,
     class_id: classId
   });
+
+  return rowCount;
 }
 
 function findReservation(userId) {

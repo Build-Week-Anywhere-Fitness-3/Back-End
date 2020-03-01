@@ -8,17 +8,15 @@ router.post("/register", (req, res) => {
   const user = req.body;
   const hash = bcrypt.hashSync(user.password, 10);
   user.password = hash;
-
   Users.addUser(user)
     .then(newUser => {
-      res.status(201).json(newUser);
+      res.status(201).json(`${newUser} user created`);
     })
     .catch(err => res.status(500).json({ message: "error adding new user" }));
 });
 
 router.post("/login", (req, res) => {
   const { username, password } = req.body;
-  console.log("user: ", req.body);
   Users.findBy({ username })
     .first()
     .then(user => {
