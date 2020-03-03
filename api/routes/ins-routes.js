@@ -43,17 +43,16 @@ router.post("/create-group", (req, res) => {
   const groupData = req.body;
   Class.addGroup(groupData)
     .then(newGroup => {
-      res.json(`you have added ${newGroup} new group`);
+      res.json(newGroup);
     })
     .catch(err => res.status(500).json({ message: "error creating group" }));
 });
 
 router.post("/create-class", (req, res) => {
   const classData = req.body;
-  console.log("user: ", req.body);
   Class.addClass(classData)
     .then(newClass => {
-      res.status(201).json(`you have added ${newClass} new class`);
+      res.status(201).json(newClass);
     })
     .catch(err => {
       res.status(500).json({ message: "error adding new class" });

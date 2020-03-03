@@ -20,7 +20,7 @@ exports.up = function(knex) {
         .references("groups.id")
         .onDelete("CASCADE")
         .onUpdate("CASCADE");
-      tbl.date("class_date");
+      tbl.date("class_date", { precision: 6 });
       tbl.string("start_time");
       tbl.integer("duration");
       tbl.integer("intensity_level");

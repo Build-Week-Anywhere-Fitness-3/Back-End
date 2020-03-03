@@ -61,40 +61,24 @@ function searchByName(filter) {
 // funtions only for instructor roles
 
 async function addClass(newClass) {
-  const { rowCount } = await db("classes").insert({
-    name: newClass.name,
-    group_id: db("groups")
-      .select("id")
-      .where("name", newClass.group),
-    class_date: newClass.class_date,
-    start_time: newClass.start_time,
-    duration: newClass.duration,
-    intensity_level: newClass.intensity_level,
-    location: newClass.location,
-    current_size: newClass.current_size,
-    max_size: newClass.max_size
-  });
+  const [id] = await db("classes")
+    .insert({
+      name: newClass.name,
+      group_id: db("groups")
+        .select("id")
+        .where("name", newClass.group),
+      class_date: newClass.class_date,
+      start_time: newClass.start_time,
+      duration: newClass.duration,
+      intensity_level: newClass.intensity_level,
+      location: newClass.location,
+      current_size: newClass.current_size,
+      max_size: newClass.max_size
+    })
+    .returning("id");
 
-  return rowCount;
+  return getClassById(id);
 }
-
-// async function addClass(newClass) {
-//   const [id] = await db("classes").insert({
-//     name: newClass.name,
-//     group_id: db("groups")
-//       .select("id")
-//       .where("name", newClass.group),
-//     class_date: newClass.class_date,
-//     start_time: newClass.start_time,
-//     duration: newClass.duration,
-//     intensity_level: newClass.intensity_level,
-//     location: newClass.location,
-//     current_size: newClass.current_size,
-//     max_size: newClass.max_size
-//   });
-
-//   return getClassById(id);
-// }
 
 async function updateClass(id, newClass) {
   await db("classes")
@@ -133,14 +117,11 @@ function getGroupById(id) {
 }
 
 async function addGroup(newGroup) {
-  const { rowCount } = await db("groups").insert(newGroup);
-  return rowCount;
+  const [id] = await db("groups")
+    .insert(newGroup)
+    .returning("id");
+  return getGroupById(id);
 }
-
-// async function addGroup(newGroup) {
-//   const [id] = await db("groups").insert(newGroup);
-//   return getGroupById(id);
-// }
 
 async function updateGroup(id, changes) {
   await db("groups")

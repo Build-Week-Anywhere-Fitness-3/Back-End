@@ -27,15 +27,17 @@ function findBy(filter) {
 }
 
 async function addUser(user) {
-  const { rowCount } = await db("users").insert({
-    username: user.username,
-    password: user.password,
-    role_id: db("roles")
-      .select("id")
-      .where("name", user.role)
-  });
+  const [id] = await db("users")
+    .insert({
+      username: user.username,
+      password: user.password,
+      role_id: db("roles")
+        .select("id")
+        .where("name", user.role)
+    })
+    .returning("id");
 
-  return rowCount;
+  return findById(id);
 }
 
 // function addUser(user) {

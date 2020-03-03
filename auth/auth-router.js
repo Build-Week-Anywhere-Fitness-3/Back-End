@@ -10,7 +10,7 @@ router.post("/register", (req, res) => {
   user.password = hash;
   Users.addUser(user)
     .then(newUser => {
-      res.status(201).json(`${newUser} user created`);
+      res.status(201).json(newUser);
     })
     .catch(err => res.status(500).json({ message: "error adding new user" }));
 });
