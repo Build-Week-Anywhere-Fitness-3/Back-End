@@ -77,7 +77,7 @@ async function addClass(newClass) {
     })
     .returning("id");
 
-  return getClassById(id);
+  return i(id);
 }
 
 async function updateClass(id, newClass) {
